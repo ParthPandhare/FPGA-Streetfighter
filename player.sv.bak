@@ -1,0 +1,41 @@
+module player(
+    input clk,
+    input left,
+    input right,
+    input a,
+    output reg [9:0] x,
+    output reg [9:0] y,
+    output state
+);
+
+    logic [9:0] x_d = 10'd10;
+    logic [9:0] y_d = 10'd10;
+    logic state_d = 0;
+
+    logic x_changed_r = 0;
+    logic x_changed_l = 0;
+    logic y_changed = 0;
+
+    always @(posedge clk) begin
+
+        x <= x_d;
+        y <= y_d;
+        state <= state_d;
+
+    end
+
+    always_comb begin
+    
+        if (left && x > 0) begin
+            x_d = x - 1;
+        end else if (right && x < 127) begin
+            x_d = x + 1;
+        end else begin
+            x_d = x;
+        end
+
+    end
+
+    assign state_d = a;
+
+endmodule

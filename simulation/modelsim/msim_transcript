@@ -1,0 +1,103 @@
+# Reading pref.tcl
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2021.2 win64 Apr 14 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# do DDAV_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Questa Intel Starter FPGA Edition-64 vmap 2021.2 Lib Mapping Utility 2021.04 Apr 14 2021
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/21.1/questa_fse/win64/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -sv -work work +incdir+C:/Users/parth/Documents/DAV/DDAV {C:/Users/parth/Documents/DAV/DDAV/player_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 09:46:52 on May 12,2024
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/parth/Documents/DAV/DDAV" C:/Users/parth/Documents/DAV/DDAV/player_tb.sv 
+# -- Compiling module player_tb
+# 
+# Top level modules:
+# 	player_tb
+# End time: 09:46:53 on May 12,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/parth/Documents/DAV/DDAV {C:/Users/parth/Documents/DAV/DDAV/player.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 09:46:53 on May 12,2024
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/parth/Documents/DAV/DDAV" C:/Users/parth/Documents/DAV/DDAV/player.sv 
+# -- Compiling module player
+# 
+# Top level modules:
+# 	player
+# End time: 09:46:53 on May 12,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/parth/Documents/DAV/DDAV {C:/Users/parth/Documents/DAV/DDAV/fireball.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 09:46:53 on May 12,2024
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/parth/Documents/DAV/DDAV" C:/Users/parth/Documents/DAV/DDAV/fireball.sv 
+# -- Compiling module fireball
+# 
+# Top level modules:
+# 	fireball
+# End time: 09:46:53 on May 12,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim -vopt work.player_tb
+# vsim -vopt work.player_tb 
+# Start time: 09:46:58 on May 12,2024
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(26): (vopt-3838) Variable 'fireball_enable' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(42). 
+# ** Warning: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(27): (vopt-3838) Variable 'fireball_direction' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(43). 
+# ** Warning: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(28): (vopt-3838) Variable 'one_hit' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(101). 
+# ** Warning: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(53): (vopt-3838) Variable 'two_fireball_enable' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(69). 
+# ** Warning: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(54): (vopt-3838) Variable 'two_fireball_direction' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(70). 
+# ** Warning: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(55): (vopt-3838) Variable 'two_hit' written by continuous and procedural assignments. 
+# One of the assignments is implicit. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(86). 
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=6.
+# Loading sv_std.std
+# Loading work.player_tb(fast)
+quit -sim
+# End time: 09:47:08 on May 12,2024, Elapsed time: 0:00:10
+# Errors: 0, Warnings: 6
+vsim -voptargs=+acc work.player_tb
+# vsim -voptargs="+acc" work.player_tb 
+# Start time: 09:47:11 on May 12,2024
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 2 FSMs in module "fireball(fast)".
+# Loading sv_std.std
+# Loading work.player_tb(fast)
+# Loading work.player(fast)
+# Loading work.fireball(fast)
+# ** Error (suppressible): (vsim-3839) Variable '/player_tb/two_hit', driven via a port connection, is multiply driven. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(74).
+#    Time: 0 ns  Iteration: 0  Instance: /player_tb File: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv Line: 55
+# ** Error (suppressible): (vsim-3839) Variable '/player_tb/two_fireball_direction', driven via a port connection, is multiply driven. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(57).
+#    Time: 0 ns  Iteration: 0  Instance: /player_tb File: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv Line: 54
+# ** Error (suppressible): (vsim-3839) Variable '/player_tb/two_fireball_enable', driven via a port connection, is multiply driven. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(57).
+#    Time: 0 ns  Iteration: 0  Instance: /player_tb File: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv Line: 53
+# ** Error (suppressible): (vsim-3839) Variable '/player_tb/one_hit', driven via a port connection, is multiply driven. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(89).
+#    Time: 0 ns  Iteration: 0  Instance: /player_tb File: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv Line: 28
+# ** Error (suppressible): (vsim-3839) Variable '/player_tb/fireball_direction', driven via a port connection, is multiply driven. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(30).
+#    Time: 0 ns  Iteration: 0  Instance: /player_tb File: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv Line: 27
+# ** Error (suppressible): (vsim-3839) Variable '/player_tb/fireball_enable', driven via a port connection, is multiply driven. See C:/Users/parth/Documents/DAV/DDAV/player_tb.sv(30).
+#    Time: 0 ns  Iteration: 0  Instance: /player_tb File: C:/Users/parth/Documents/DAV/DDAV/player_tb.sv Line: 26
+# Error loading design
+# End time: 09:47:12 on May 12,2024, Elapsed time: 0:00:01
+# Errors: 6, Warnings: 0

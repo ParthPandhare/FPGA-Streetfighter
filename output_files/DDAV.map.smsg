@@ -1,0 +1,3 @@
+Warning (10268): Verilog HDL information at player.sv(39): always construct contains both blocking and non-blocking assignments File: C:/Users/parth/Documents/DAV/DDAV/player.sv Line: 39
+Info (10281): Verilog HDL Declaration information at player.sv(4): object "left" differs only in case from object "LEFT" in the same scope File: C:/Users/parth/Documents/DAV/DDAV/player.sv Line: 4
+Info (10281): Verilog HDL Declaration information at player.sv(5): object "right" differs only in case from object "RIGHT" in the same scope File: C:/Users/parth/Documents/DAV/DDAV/player.sv Line: 5

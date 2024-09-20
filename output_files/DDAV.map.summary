@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Thu Jun  6 18:35:50 2024
+Quartus Prime Version : 21.1.0 Build 842 10/21/2021 SJ Lite Edition
+Revision Name : DDAV
+Top-level Entity Name : game_top
+Family : MAX 10
+Total logic elements : 1,630
+    Total combinational functions : 1,606
+    Dedicated logic registers : 224
+Total registers : 224
+Total pins : 32
+Total virtual pins : 0
+Total memory bits : 196,608
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 1
+UFM blocks : 0
+ADC blocks : 0

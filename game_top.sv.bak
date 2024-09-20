@@ -1,0 +1,44 @@
+`timescale 1ns/1ns
+
+module game_top(
+    input clk,
+    input reset,
+    output hsync,
+    output vsync,
+    output [3:0] red,
+    output [3:0] green,
+    output [3:0] blue
+);
+
+    logic vgaclk;
+    clock clk_(clk, vgaclk);
+
+	 /* For simulation purposes: */
+    // logic vgaclk;
+    // logic reset;
+    // initial begin
+    //     vgaclk = 0;
+    //     reset = 1;
+    // end
+    // always begin
+    //     #5
+    //     vgaclk = ~vgaclk;
+    // end
+
+    logic [9:0] hc;
+    logic [9:0] vc;
+
+    logic [9:0] x;
+    logic [9:0] y;
+    assign x = hc / 5;
+    assign y = vc / 5;
+
+    reg [7:0] color;
+    reg [13:0] addr;
+    reg [7:0] vga_color;
+
+	graphics graphics_(x, y, color, addr); 
+    ping_pong_ram ram_(vgaclk, addr, hc, vc, color, vga_color);
+    vga vga_(vgaclk, vga_color[7:5], vga_color[4:2], vga_color[1:0], ~reset, hc, vc, hsync, vsync, red, green, blue);
+
+endmodule

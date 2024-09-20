@@ -1,0 +1,65 @@
+module fireball(
+    input clk,
+    input enabled,
+    input direction,        // 0 for left, 1 for right
+    input [9:0] start_y,
+    input [9:0] start_x,
+    output reg [1:0] state,
+    output reg [9:0] x,
+    output reg [9:0] y
+);
+
+    `include "globals.svh"
+
+    logic [1:0] state_d = 2'b00;
+    logic [1:0] enabled_sr = 2'b00;
+    logic [4:0] explosion_counter = 5'd0;
+
+    logic [9:0] x_d = 10'd0;
+    logic [9:0] y_d = 10'd0;
+
+    always @(posedge clk) begin
+
+        state_d <= state;
+        x <= x_d;
+        y <= y_d;
+
+        enabled_sr <= { enabled_sr[0], enabled };
+
+        if (state_d == FIREBALL_EXPLOSION) begin
+            explosion_counter <= explosion_counter + 1;
+        end
+
+    end
+
+    always_comb begin
+
+        if (enabled_sr == 2'b01 && state == FIREBALL_DISABLED) begin
+            state_d = FIREBALL_ENABLED;
+            if (direction) begin
+                x_d = start_x + SPRITE_WIDTH;
+            end else begin
+                x_d = start_x - SPRITE_WIDTH;
+            end
+            y_d = start_y;
+        end else if (enabled_sr == 2'b10) begin
+            state_d = FIREBALL_EXPLOSION;
+            x_d = x;
+            y_d = y;
+        end else if (explosion_counter == 5'b11111) begin
+            state_d = FIREBALL_DISABLED;
+            x_d = 0;
+            y_d = 0;
+        end else begin
+            state_d = state;
+            if (direction) begin
+                x_d = x + 1;
+            end else begin
+                x_d = x - 1;
+            end
+            y_d = y;
+        end 
+
+    end
+
+endmodule

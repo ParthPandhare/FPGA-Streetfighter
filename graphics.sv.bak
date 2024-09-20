@@ -1,0 +1,40 @@
+module graphics(
+    input [9:0] x,
+    input [9:0] y,
+    input [9:0] player_one_x,
+    input [9:0] player_one_y,
+    input player_one_state,
+    output reg [7:0] data_out,
+    output reg [13:0] addr_out
+);
+
+    always_comb begin
+
+        if (x < 128 && y < 96) begin
+            addr_out = x + 128*y;
+
+            if (x == player_one_x && (y == player_one_y || y == player_one_y + 1)) begin
+                if (player_one_state) begin
+                    data_out = 8'b11100000;
+                end else begin 
+                    data_out = 8'b00000011;
+                end
+            end else begin
+                data_out = 8'b00011100;
+            end
+        end else begin
+            addr_out = 14'd0;
+            data_out = 8'd0;
+        end
+
+        // if (x < 128 && y < 96) begin
+        //     addr_out = x + 128*y;
+        //     data_out = 8'b11111100;
+        // end else begin
+        //     addr_out = 14'd0;
+        //     data_out = 8'd0;
+        // end
+
+    end
+
+endmodule

@@ -1,0 +1,38 @@
+module game_handler (    
+    input [9:0] player_one_x,
+    input [9:0] player_one_y,
+    input [9:0] fireball_one_x,
+    input [9:0] fireball_one_y,
+    input [9:0] player_two_x,
+    input [9:0] player_two_y,
+    input [9:0] fireball_two_x,
+    input [9:0] fireball_two_y,
+    output player_two_hit,
+    output player_one_hit
+);
+    `include "globals.svh"
+
+    always_comb begin
+
+        if (player_two_x - SPRITE_WIDTH/2 <= fireball_one_x && fireball_one_x <= player_two_x + SPRITE_WIDTH/2 && 
+            fireball_one_y >= player_two_y - SPRITE_HEIGHT + 1 && fireball_one_y <= player_two_y) begin
+
+            player_two_hit = 1;
+
+        end else begin
+            player_two_hit = 0;
+        end
+
+        if (player_one_x - SPRITE_WIDTH/2 <= fireball_two_x && fireball_two_x <= player_one_x + SPRITE_WIDTH/2 && 
+            fireball_two_y >= player_one_y - SPRITE_HEIGHT + 1 && fireball_two_y <= player_one_y) begin
+
+            player_one_hit = 1;
+
+        end else begin
+            player_one_hit = 0;
+        end
+
+    end
+
+
+endmodule
